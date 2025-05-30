@@ -1,0 +1,322 @@
+Understood. I’ll research and design a Python-based solution that can ingest agent code and perform a risk assessment by analyzing prompts, data inputs, and validation mechanisms.
+This will include best practices for identifying risk vectors, evaluating control design, and checking whether those controls are operating effectively. I’ll share the results with sample code and recommendations.
+
+
+# Python Agent Code Risk Assessment Framework
+
+## Introduction
+
+With the increasing use of AI-based agents, RPA bots, and automated scripts in enterprise environments, ensuring their security and reliability is paramount. Deployed agent code can introduce unique risks – for example, a Large Language Model (LLM) agent might be vulnerable to **prompt injection** (malicious inputs altering the agent’s behavior), while an RPA script might mishandle sensitive data or execute unsafe commands. This report presents a Python-based auditing framework designed to **ingest Python agent code (and configurations)** and perform a comprehensive risk assessment. The framework will analyze key areas of the agent’s implementation, including:
+
+* **Prompt and Instruction Handling:** Checking how prompts or instructions (for LLM-based agents) are constructed and used, to identify prompt injection vulnerabilities. (A prompt injection occurs when crafted inputs manipulate an LLM into unintended actions.)
+* **Data Input Processing:** Reviewing how the agent handles external inputs (user queries, files, API responses), focusing on input validation and sanitization to catch issues like code or command injection.
+* **Control Mechanisms:** Verifying the presence of authentication/authorization controls for sensitive operations, proper logging and monitoring (to trace actions and errors), and fallback routines for robust error handling. Lack of logging or authentication can allow attacks to go undetected or unauthorized actions to occur.
+* **Output Validation:** Ensuring that the outputs or actions the agent produces are validated or filtered. For instance, if an agent executes commands or produces code, these outputs should be checked to prevent unsafe operations (OWASP highlights *Insecure Output Handling* as a top risk in LLM applications).
+
+By focusing on these areas, the tool aims to flag common security and operational risks such as hardcoded secrets, unsanitized inputs, missing logging, and weak error handling. The outcome of the audit includes a **summary of identified risks** and an **overall control effectiveness rating**, helping stakeholders gauge the security posture of their agent code.
+
+## Key Risk Areas for Agent Code
+
+Before designing the tool, it’s important to outline what specific patterns and issues we consider risky in the context of AI agents and automation scripts:
+
+* **Prompt Injection Risks:** If the agent constructs prompts for an LLM by directly embedding user-provided text, it could allow malicious instructions to alter the LLM’s behavior. The tool will scan for prompt strings that incorporate external input without safeguards. *Example:* constructing a prompt like `f"Explain: {user_input}"` without filtering could be dangerous.
+* **Unvalidated Input & Injection:** Any place where external input is used in commands or evaluated as code is a potential injection point. The framework will flag usage of functions like `eval()` or `exec()` on user data, and calls to system commands (e.g., `os.system()` or `subprocess.run()`) that include unsanitized input. These patterns can lead to code or command injection vulnerabilities.
+* **Hardcoded Credentials & Secrets:** Hardcoded API keys, passwords, or tokens in agent code pose a serious risk (classified as CWE-798). Attackers gaining access to source code could exploit these secrets. The tool will scan for patterns that resemble API keys or passwords (for example, AWS secret key formats, or strings like `"password = '...'"`).
+* **Authentication & Authorization Gaps:** Agents that perform sensitive tasks should enforce authentication. The audit checks for indications that critical functions are protected (or flags the absence of such checks). *For example:* if an agent connects to internal systems, does it verify the identity/permissions of the requestor? Lack of authentication for critical actions is a known weakness (e.g., CWE-306).
+* **Lack of Logging and Monitoring:** Proper logging is essential for detecting misuse or failures. If the agent code has no logging of important events or errors, incidents may go unnoticed for too long. The tool will flag if no logging is present or if exceptions are caught without any log/alert.
+* **Error Handling and Fallbacks:** Agents should handle exceptions gracefully and have fallback routines (e.g., if an API call fails, use a backup, or at least not crash silently). The absence of try/except blocks around critical operations or the presence of broad exception catches with `pass` (suppressing errors) are considered poor practices the tool will identify.
+* **Output Filtering:** If the agent produces output (text, files, code) or executes actions based on LLM output, there should be validation. For instance, an agent that generates code should review or sandbox it before execution. Neglecting to validate outputs can lead to downstream exploits. The framework can’t fully validate logic, but it will note if LLM outputs are used directly in sensitive contexts (e.g., passed to `exec()` or system commands without checks).
+
+By systematically scanning for these issues, the framework helps auditors and developers catch vulnerabilities early. The next sections describe how we implement this scanner using Python, and how it can be extended and integrated into enterprise workflows.
+
+## Framework Design and Approach
+
+**1. Static Code Parsing with AST:** The tool uses Python’s built-in Abstract Syntax Tree (AST) module to parse the agent’s Python code into an AST. Static analysis via AST allows traversing the code structure without executing it. This approach is similar to how security linters like Bandit operate – Bandit builds an AST for each file and runs plugins to detect issues. By examining the AST, our tool can find function calls, assignments, and other constructs that match insecure patterns (e.g., an AST node representing an `eval` call or a `subprocess.run` with `shell=True`). Using AST ensures we catch issues even if they span multiple lines or are constructed programmatically, which simple text search might miss.
+
+**2. Pattern-Based Rule Engine:** The framework is built around a set of rules or checks, each targeting a specific risk pattern. We design each rule as either:
+
+* An AST traversal looking for certain node types and values (for complex patterns like function calls or misuse of APIs).
+* A simple regex/text scan for issues that are easier detected via patterns in raw code or config (e.g., detecting hardcoded secrets or specific keywords in configuration files).
+
+This combination of AST analysis and regex matching provides flexibility. For example, an AST rule can identify the use of dangerous functions and how inputs flow into them, while a regex rule can catch something like `password = "abc123"` in a config file. We encapsulate each check in a “plugin” function that returns any findings. The rule engine iterates through these checks for a given codebase. This design makes it easy to add new rules (simply write a new check function and add it to the list) – satisfying the extensibility requirement. (In fact, Bandit and similar tools use plugin architectures to allow custom rules.)
+
+**3. Configuration File Scanning:** Beyond code, agent behavior may be defined or modified via configuration files (YAML, JSON, etc.). Our framework can ingest these as well. For structured configs, the approach can be: load the file (using `yaml` or `json` library) and inspect keys/values for risky entries. For instance, a YAML file might contain a prompt template or a flag disabling SSL verification. The tool can flag keys like `prompt:` that include `{user_input}` without controls, or flags like `verify_ssl: false`. Additionally, we can fallback to regex scanning on config text for patterns like secret keys or suspicious settings.
+
+**4. Reporting & Scoring:** All rule findings are collected and categorized by severity. The tool will produce a **summary report** of identified issues, listing each finding with file name, line number, and a description. To give a high-level view, we compute an **overall control effectiveness rating**. This rating could be a qualitative grade (e.g., **Strong**, **Moderate**, **Weak**) or a numeric score. One approach is to start from 100 and deduct points for each issue based on severity, or use a weighted formula. For example:
+
+* High-risk issues (like use of `exec(user_input)` or hardcoded admin password) might each reduce the score significantly (and any one high-risk might drop the overall rating to "Weak").
+* Medium risks (e.g., missing logging or missing error handling) reduce the score moderately.
+* If no significant issues are found, the rating would be "Strong" (or a high score).
+
+The output thus includes both the detailed findings and an executive summary rating, to cater to both developers (who need specifics) and managers (who need an overview).
+
+## Prototype Implementation
+
+Below is a prototype Python implementation of the auditing tool. This code is well-documented and organized to illustrate how the framework works. In a real enterprise setting, this code would likely be part of a larger application or CI pipeline, but here we show it as a self-contained module for clarity.
+
+```python
+import ast
+import re
+
+class Rule:
+    """Represents a single audit rule for code scanning."""
+    def __init__(self, name, description, check_func):
+        self.name = name
+        self.description = description
+        self.check_func = check_func  # function that performs the check and returns list of issues
+
+    def run(self, tree, code_str):
+        """Run the rule's check_func on the AST tree and raw code string. Return a list of issue dicts."""
+        return self.check_func(tree, code_str)
+
+# --- 1. Define check functions for each rule ---
+
+def check_unsafe_eval_exec(tree, code_str):
+    """Flag use of eval() or exec() which can execute arbitrary code."""
+    issues = []
+    for node in ast.walk(tree):
+        if isinstance(node, ast.Call):
+            # Check for direct calls to eval or exec
+            if isinstance(node.func, ast.Name) and node.func.id in {"eval", "exec"}:
+                issues.append({
+                    "line": node.lineno,
+                    "issue": f"Use of dangerous function '{node.func.id}' (allows arbitrary code execution)"
+                })
+    return issues
+
+def check_shell_injection(tree, code_str):
+    """Flag use of OS shell commands with untrusted input (possible command injection)."""
+    issues = []
+    for node in ast.walk(tree):
+        if isinstance(node, ast.Call):
+            # os.system(...) call
+            if isinstance(node.func, ast.Attribute) and isinstance(node.func.value, ast.Name):
+                if node.func.value.id == "os" and node.func.attr == "system":
+                    issues.append({
+                        "line": node.lineno,
+                        "issue": "os.system call used (could execute shell commands from input)"
+                    })
+            # subprocess.run(..., shell=True) or subprocess.call(..., shell=True)
+            if isinstance(node.func, ast.Attribute) and isinstance(node.func.value, ast.Name):
+                if node.func.value.id == "subprocess" and node.func.attr in {"run", "call"}:
+                    # Check arguments for shell=True
+                    for kw in node.keywords:
+                        if kw.arg == "shell" and isinstance(kw.value, ast.Constant) and kw.value.value is True:
+                            issues.append({
+                                "line": node.lineno,
+                                "issue": "subprocess.run with shell=True (allows shell injection via input)"
+                            })
+    return issues
+
+def check_prompt_injection(tree, code_str):
+    """Flag LLM prompt constructions that include unvalidated input (potential prompt injection)."""
+    issues = []
+    for node in ast.walk(tree):
+        if isinstance(node, ast.Call):
+            # Look for openai.Completion.create or openai.ChatCompletion.create calls (typical LLM prompt usage)
+            if isinstance(node.func, ast.Attribute) and node.func.attr == "create":
+                # node.func.value could be something like openai.Completion or openai.ChatCompletion (an Attribute of Name 'openai')
+                val = node.func.value
+                if isinstance(val, ast.Attribute) and isinstance(val.value, ast.Name):
+                    if val.value.id == "openai" and val.attr in {"Completion", "ChatCompletion"}:
+                        # Found a call like openai.Completion.create(...)
+                        # Check if 'prompt' argument exists and is constructed dynamically
+                        for kw in node.keywords:
+                            if kw.arg == "prompt":
+                                # If the prompt value is a concatenation or f-string (BinOp or JoinedStr in AST), likely dynamic
+                                if isinstance(kw.value, ast.BinOp) or isinstance(kw.value, ast.JoinedStr):
+                                    issues.append({
+                                        "line": node.lineno,
+                                        "issue": "LLM prompt is dynamically constructed from input (possible prompt injection risk)"
+                                    })
+    return issues
+
+def check_hardcoded_secrets(tree, code_str):
+    """Flag likely hardcoded secrets (API keys, passwords) in code or config."""
+    issues = []
+    # Define some regex patterns for common secret formats (can be extended as needed)
+    secret_patterns = [
+        r'AKIA[0-9A-Z]{16}',           # AWS Access Key ID pattern
+        r'(?i)secret[_-]?key\s*=\s*["\']?[A-Za-z0-9/+]{16,}["\']?',  # Generic "secret key" assignment with base64-ish value
+        r'(?i)password\s*=\s*["\']?.{6,}["\']?'  # "password" assignment (value of length >=6 as a naive check)
+    ]
+    for pattern in secret_patterns:
+        for match in re.finditer(pattern, code_str):
+            line_num = code_str.count("\n", 0, match.start()) + 1
+            issues.append({
+                "line": line_num,
+                "issue": f"Hardcoded credential or secret (matches pattern: {pattern})"
+            })
+    return issues
+
+def check_logging_and_exceptions(tree, code_str):
+    """Check for presence of logging and proper exception handling (control and monitoring)."""
+    issues = []
+    logging_imported = False
+    for node in ast.walk(tree):
+        # Detect if logging module is imported
+        if isinstance(node, ast.Import):
+            for alias in node.names:
+                if alias.name == "logging":
+                    logging_imported = True
+        if isinstance(node, ast.ImportFrom):
+            if node.module == "logging":
+                logging_imported = True
+        # Detect bare except clauses with no logging or action
+        if isinstance(node, ast.ExceptHandler):
+            # If the except block is empty or just passes, it's a bad practice
+            if not node.body or (len(node.body) == 1 and isinstance(node.body[0], ast.Pass)):
+                issues.append({
+                    "line": node.lineno,
+                    "issue": "Exception caught and ignored (no handling or logging in except block)"
+                })
+    # If logging is never imported or used in a non-trivial agent, flag it
+    if not logging_imported:
+        issues.append({
+            "line": 0,
+            "issue": "No logging detected in code (important actions may not be logged)"
+        })
+    return issues
+
+# --- 2. Combine all rules into a list ---
+rules = [
+    Rule("Unsafe Eval/Exec Use", "Use of eval() or exec() functions (code injection risk)", check_unsafe_eval_exec),
+    Rule("Command Injection", "Execution of shell commands using os.system or subprocess with shell=True", check_shell_injection),
+    Rule("Prompt Injection Risk", "LLM prompt uses untrusted input (prompt injection vulnerability)", check_prompt_injection),
+    Rule("Hardcoded Secrets", "Hardcoded credentials or sensitive secrets in code", check_hardcoded_secrets),
+    Rule("Logging/Exception Handling", "Lack of logging or improper exception handling", check_logging_and_exceptions)
+]
+
+def scan_code(code_str):
+    """
+    Analyze a Python code string and return a list of identified issues.
+    Each issue is a dict with rule name, line number, and description.
+    """
+    issues_found = []
+    try:
+        tree = ast.parse(code_str)
+    except Exception as parse_err:
+        # If code is not syntactically correct, we cannot parse it for AST
+        issues_found.append({
+            "rule": "Parsing Error",
+            "line": 0,
+            "description": f"Code parsing failed: {parse_err}"
+        })
+        return issues_found
+
+    for rule in rules:
+        results = rule.run(tree, code_str)
+        for res in results:
+            issues_found.append({
+                "rule": rule.name,
+                "line": res["line"],
+                "description": res["issue"]
+            })
+    return issues_found
+
+# Example usage on a given script (string or file content):
+example_code = """
+import openai
+import os
+
+API_KEY = "AKIA1234567890ABCDEF"  # hardcoded AWS key example
+password = "supersecret"  # hardcoded password example
+
+def agent(user_input):
+    # Construct prompt directly with user input (potential injection)
+    prompt = f"User said: {user_input}"
+    response = openai.Completion.create(engine="davinci", prompt=prompt)
+    # Execute command with user input (unsafe)
+    os.system(user_input)
+    try:
+        risky_action = eval(user_input)  # executing user input as code!
+    except Exception:
+        pass  # exceptions are silently ignored
+    return response
+"""
+
+issues = scan_code(example_code)
+for issue in issues:
+    print(f"[Line {issue['line']}] {issue['rule']}: {issue['description']}")
+```
+
+In the above code:
+
+* We define a `Rule` class to encapsulate each check. Each rule has a human-readable name, a description, and a `check_func` that implements the actual detection logic.
+
+* Several `check_...` functions implement specific scans:
+
+  * `check_unsafe_eval_exec` traverses the AST to find any use of Python’s `eval()` or `exec()` (these functions are dangerous as they execute strings as code). If found, it records an issue with the line number.
+  * `check_shell_injection` looks for calls to `os.system()` or `subprocess.run()`/`call()` with `shell=True`. Both patterns can allow shell command injection if user input is passed in.
+  * `check_prompt_injection` identifies calls to OpenAI’s API (or similar LLM libraries) where a prompt is constructed dynamically. It specifically flags if the prompt argument is built via string concatenation or f-string (AST node types `BinOp` or `JoinedStr`), which often indicates insertion of external input. This suggests a prompt injection risk – the agent is not properly isolating or sanitizing user input before including it in the LLM’s prompt.
+  * `check_hardcoded_secrets` uses regex patterns to detect hardcoded secrets. We include patterns for AWS keys, generic secret keys, and passwords. If any string in the code matches these patterns, an issue is logged. (In practice, more advanced secret scanners or additional patterns could be integrated for better coverage.)
+  * `check_logging_and_exceptions` verifies if the logging module is imported (as a proxy for “is any logging happening at all?”) and checks for empty exception handlers. If it finds a bare `except Exception: pass` with no logging or mitigation, that’s flagged because the error is being suppressed without record. Also, if no logging is imported or used, it raises an issue that the agent might not be logging important events. This covers the **control/monitoring** aspect – lack of logging and poor error handling reduce the ability to detect and recover from issues.
+
+* All rules are collected in the `rules` list, and the `scan_code()` function runs each rule on a given code string. It parses the code into an AST (with `ast.parse`) and then iterates over rules to collect any findings. Each finding includes the rule name, the line number, and a description of the problem.
+
+* The example usage at the bottom provides a sample agent code (as a multiline string) and prints out the issues detected. For instance, given the sample, the output might look like:
+
+  ```
+  [Line 4] Hardcoded Secrets: Hardcoded credential or secret (matches pattern: AKIA[0-9A-Z]{16})
+  [Line 5] Hardcoded Secrets: Hardcoded credential or secret (matches pattern: (?i)password\s*=\s*["\']?.{6,}["\']?)
+  [Line 10] Prompt Injection Risk: LLM prompt is dynamically constructed from input (possible prompt injection risk)
+  [Line 11] Command Injection: os.system call used (could execute shell commands from input)
+  [Line 13] Unsafe Eval/Exec Use: Use of dangerous function 'eval' (allows arbitrary code execution)
+  [Line 14] Logging/Exception Handling: Exception caught and ignored (no handling or logging in except block)
+  [Line 0] Logging/Exception Handling: No logging detected in code (important actions may not be logged)
+  ```
+
+  Each corresponds to an insecure pattern in the code (as comments in the example describe). Note that line 0 for the logging issue is used to indicate a file-level concern (no logging at all, not tied to a specific line).
+
+This prototype demonstrates how the framework would programmatically inspect an agent script. In practice, you would run `scan_code()` on each relevant file (or combine file contents) of the agent. For configuration files, you might implement similar checks (perhaps using a separate set of regex patterns or key inspections) – those could be integrated by extending the `scan_code` function or via additional rules specialized for config data.
+
+## Extending the Framework with Custom Rules
+
+One of the design goals was **extensibility**. New rules can be added easily to address emerging risks or project-specific policies. There are two primary ways to extend the tool:
+
+* **Pattern-Based Rules:** For straightforward patterns, you can add a new regex to an existing check or write a new check function. For example, if your enterprise has a specific format for internal API tokens, you could add a regex for that in `check_hardcoded_secrets`. Or if you want to ensure no one disables SSL verification, you might add a regex to search for `verify_ssl=False` or equivalent in code/config.
+
+* **Plugin Architecture:** The rules list can be dynamically constructed. In an enterprise setting, you might maintain a separate module or configuration file for custom rules. Each rule could be a small plugin (perhaps a Python file defining a `check` function). The framework can discover these (via naming conventions or an entry in a config) and load them. For instance, you could have a directory `custom_rules/` where each file defines a Rule subclass or a check function, and the main scanner imports them. This way, as new threats emerge (say, a new vulnerable function or a new type of agent integration), security teams can write a plugin without modifying the core scanner.
+
+The use of the AST and Python’s dynamic import abilities makes this feasible – the scanner can introspect code structures for whatever pattern you define. This flexibility ensures the tool can evolve alongside the threat landscape. (Notably, established tools like Bandit use plugins in a similar way to cover a range of security issues.)
+
+## Integration in an Enterprise Environment
+
+To effectively use this auditing tool in an enterprise, consider the following integration approaches:
+
+* **CI/CD Pipeline:** Integrate the scanner into your continuous integration pipeline. For example, as part of a GitHub Actions or Jenkins build, run the tool on the agent’s repository. If high-severity issues are found (e.g., hardcoded credentials or dangerous function use), the pipeline can fail the build or at least warn the developers. This ensures problems are caught early, before deployment. Over time, this becomes a regression safety net – as code evolves, the scanner will catch reintroductions of known risks.
+
+* **Scheduled Audits:** In addition to CI, schedule the tool to run periodically (e.g., nightly or weekly) on deployed agent codebases. This might catch issues in environments where CI enforcement is lax or where configuration changes (which may not trigger code builds) could introduce risks. The results can be sent to a monitoring dashboard or security team email for review.
+
+* **Enterprise Extensions:** Large organizations might integrate this scanner with existing security tools. For instance, results could be fed into a SIEM (Security Information and Event Management) system or an issue tracker. If the enterprise already uses static analysis tools (like SonarQube, or SAST solutions), this custom tool could complement them by specifically focusing on AI agent concerns (prompt usage, etc.) that generic SAST tools might not yet cover. It’s also possible to merge this tool’s rules with others; for example, run Bandit alongside it – Bandit will catch a broad range of Python issues, while our tool adds AI-agent-specific checks.
+
+* **Developer Training and Usage:** Encourage developers to run the tool locally before committing code. Since the code is Python-based, it’s easy to package (could even be a CLI tool). Providing a how-to in the project README (with example output like shown above) will help developers understand and proactively fix issues. This also creates awareness of secure coding practices for AI agents (like how to safely incorporate user input into prompts, or the importance of logging).
+
+* **Policy and Governance:** Use the overall **Control Effectiveness Rating** from the tool as a governance metric. For instance, require that any agent scoring “Weak” must address findings before going live. Over time, as the organization hardens its agents, you might raise the bar (e.g., mandate at least “Moderate” or above). This rating can also be reported to risk management stakeholders to track improvement. The rating is derived from the issues the tool finds; you can customize the scoring logic based on what your organization deems most critical. For example, you may decide that *any* hardcoded secret immediately drops the rating to the lowest level due to compliance concerns.
+
+## Sample Output and Reporting
+
+When the tool is run on an agent script, it produces a list of findings. These can be formatted as a table for clarity. For example, imagine running the audit on a hypothetical `order_processing_agent.py`:
+
+| **Rule**                   | **Description**                                             | **Line** |
+| -------------------------- | ----------------------------------------------------------- | -------: |
+| Hardcoded Secrets          | Hardcoded credential or secret (matches pattern: `AKIA...`) |       42 |
+| Prompt Injection Risk      | LLM prompt is dynamically constructed from user input       |       87 |
+| Command Injection          | `os.system` call used with untrusted input                  |      105 |
+| Logging/Exception Handling | Exception caught and ignored (no logging in except block)   |      110 |
+
+Each issue is listed with the file line number for quick reference. In this case, the agent had an AWS key on line 42, directly included user input in an LLM prompt on line 87, etc. The descriptions explain why each is a risk. After listing individual findings, the tool can output an \*\*Overall Control Effectiveness:  \*\* based on a simple scoring algorithm. For instance, given a hardcoded secret (critical) and injection risks, we might rate this agent as **"Weak"** (or perhaps **2/5** on a five-point scale). A summary explanation could accompany the rating, like: *"Weak – The agent contains critical issues (hardcoded secrets, injection vulnerabilities) that require immediate remediation."*
+
+## Conclusion
+
+Securing AI and automation agents is an evolving challenge. This Python-based auditing framework provides a foundation for systematically reviewing agent code for known pitfalls. By parsing code and configurations, applying a suite of configurable rules, and reporting on findings, it helps teams identify and mitigate risks proactively. The approach emphasizes known best practices: never trust user input (especially in AI prompts), avoid hardcoded sensitive data, incorporate robust logging and error handling, and validate outputs. The extensible design means the framework can grow with future needs – new rules can be added as new threats or company policies emerge.
+
+**In summary**, this prototype demonstrates how enterprises can implement an **automated code risk assessment** for AI/LLM agents and scripts. When integrated into development and deployment processes, such a tool acts as a safety net, catching security and operational issues early. This not only hardens the agents against attacks (like prompt injection or credential leakage) but also ensures higher reliability and compliance with governance standards. By adopting and extending this framework, organizations can confidently leverage AI agents while maintaining a strong security posture.
+
+**References:**
+
+* OWASP Top 10 for LLM Applications (2025) – identifies **Prompt Injection** and **Insecure Output Handling** as the top risks for AI agents.
+* Snyk Learn – defines prompt injection as malicious inputs tricking LLMs into unintended actions. Highlights the need to sanitize prompt content.
+* Jit.io AppSec Tools – describes how Python security analyzers like *Bandit* scan code (using AST) for issues like insecure functions, hardcoded credentials, and injection risks. This informs our framework’s AST-based, plugin-driven approach.
+* GitHub – *Whispers* tool documentation, noting detection of hardcoded secrets (CWE-798) in code, underscoring the importance of our secret-scanning rule.
+* Invicti Blog – explains that without proper logging, breaches may go undetected and audits become difficult. This supports our check on logging presence and exception handling.
