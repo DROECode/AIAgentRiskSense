@@ -1,0 +1,105 @@
+To run a **pilot risk assessment** against a directory of AI agent code using the Python framework above, you’ll need to prepare the following components:
+
+---
+
+  ✅ 1. **Environment Setup**
+
+**Install Python (if not already):**
+
+* Python 3.8+ recommended.
+
+**Required libraries:**
+
+```bash
+pip install --upgrade openai
+```
+
+(Only needed if you wish to simulate or extend prompt detection using the OpenAI API. Not required for static analysis.)
+
+---
+
+  ✅ 2. **Directory Structure**
+
+Ensure you have a directory (e.g., `agents/`) containing AI agent code files:
+
+```
+/project-root/
+│
+├── audit_tool.py         # The static scanner (from our prototype)
+├── agents/               # Directory with agent code
+│   ├── agent1.py
+│   ├── agent2.py
+│   └── config.yaml
+```
+
+---
+
+  ✅ 3. **Main Audit Script**
+
+Update `audit_tool.py` with logic to:
+
+* **Recursively scan `.py`, `.yaml`, `.json` files**
+* Apply static analysis rules to Python files
+* Optionally, scan config files for known risky patterns
+
+Example main loop:
+
+```python
+import os
+
+def audit_directory(directory_path):
+    results = []
+    for root, dirs, files in os.walk(directory_path):
+        for fname in files:
+            fpath = os.path.join(root, fname)
+            if fname.endswith(".py"):
+                with open(fpath, 'r', encoding='utf-8') as f:
+                    code = f.read()
+                    issues = scan_code(code)
+                    for issue in issues:
+                        results.append({
+                            "file": fpath,
+                            "line": issue["line"],
+                            "rule": issue["rule"],
+                            "description": issue["description"]
+                        })
+    return results
+
+# Run the pilot
+if __name__ == "__main__":
+    from pprint import pprint
+    issues_found = audit_directory("agents")
+    pprint(issues_found)
+```
+
+---
+
+  ✅ 4. **Output / Reporting**
+
+* Start with console output (`pprint`, `print`)
+* Export to CSV or JSON for review if needed
+* Optional: Generate a simple HTML or PDF report summarizing:
+
+  * Files scanned
+  * Number of issues
+  * Control effectiveness rating
+
+---
+
+  ✅ 5. **Pilot Success Criteria**
+
+* **Coverage:** Number of agents successfully scanned
+* **Accuracy:** At least one meaningful issue identified per agent (e.g., prompt injection, lack of logging)
+* **Actionability:** Findings are understandable by devs or auditors
+* **Integration Feasibility:** Determine ease of embedding in CI/CD or audit process
+
+---
+
+  ✅ 6. **Next Steps Post-Pilot**
+
+* Add support for `.yaml`/`.json` config parsing
+* Add a scoring model for control effectiveness
+* Build policy dashboards or ticket auto-generation
+
+---
+
