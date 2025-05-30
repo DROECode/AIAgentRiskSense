@@ -1,11 +1,13 @@
+
 import os
 import ast
 import argparse
 import csv
 import logging
+import re
 from collections import defaultdict
 
-# Set up logging
+# Configure logging
 logging.basicConfig(
     filename="audit_log.txt",
     filemode="w",
@@ -13,7 +15,7 @@ logging.basicConfig(
     format="%(asctime)s - %(levelname)s - %(message)s"
 )
 
-# Severity mapping
+# Severity map
 severity_map = {
     "Hardcoded Secrets": "High",
     "Prompt Injection Risk": "High",
@@ -24,24 +26,116 @@ severity_map = {
     "File Read Error": "Low"
 }
 
-# Placeholder scan logic
-def scan_code(code_str, file_path):
-    logging.info(f"Scanning file: {file_path}")
+def check_eval_exec(tree, file_path):
+    logging.info(f"Running Eval/Exec Use check on {file_path}")
     issues = []
-    if "eval(" in code_str:
-        line_num = next((i+1 for i, line in enumerate(code_str.splitlines()) if "eval(" in line), 0)
-        issues.append({
-            "line": line_num,
-            "rule": "Unsafe Eval/Exec Use",
-            "severity": severity_map["Unsafe Eval/Exec Use"],
-            "description": "Use of eval() is unsafe."
-        })
-        logging.warning(f"eval() found in {file_path} at line {line_num}")
-    if not issues:
-        logging.info(f"No issues found in {file_path}")
+    for node in ast.walk(tree):
+        if isinstance(node, ast.Call) and isinstance(node.func, ast.Name) and node.func.id in {"eval", "exec"}:
+            issues.append({
+                "line": node.lineno,
+                "rule": "Unsafe Eval/Exec Use",
+                "severity": severity_map["Unsafe Eval/Exec Use"],
+                "description": f"Use of {node.func.id}() is unsafe and can execute arbitrary code."
+            })
     return issues
 
-# Scan directory
+def check_os_system(tree, file_path):
+    logging.info(f"Running Command Injection check on {file_path}")
+    issues = []
+    for node in ast.walk(tree):
+        if isinstance(node, ast.Call) and isinstance(node.func, ast.Attribute):
+            if isinstance(node.func.value, ast.Name) and node.func.value.id == "os" and node.func.attr == "system":
+                issues.append({
+                    "line": node.lineno,
+                    "rule": "Command Injection",
+                    "severity": severity_map["Command Injection"],
+                    "description": "Use of os.system() can lead to shell injection."
+                })
+    return issues
+
+def check_prompt_injection(tree, file_path):
+    logging.info(f"Running Prompt Injection check on {file_path}")
+    issues = []
+    for node in ast.walk(tree):
+        if isinstance(node, ast.Call) and isinstance(node.func, ast.Attribute):
+            if node.func.attr == "create" and isinstance(node.func.value, ast.Attribute):
+                if node.func.value.attr in {"Completion", "ChatCompletion"}:
+                    for kw in node.keywords:
+                        if kw.arg == "prompt" and isinstance(kw.value, (ast.BinOp, ast.JoinedStr)):
+                            issues.append({
+                                "line": node.lineno,
+                                "rule": "Prompt Injection Risk",
+                                "severity": severity_map["Prompt Injection Risk"],
+                                "description": "Prompt is dynamically built using untrusted input, risking injection."
+                            })
+    return issues
+
+def check_hardcoded_secrets(code_str, file_path):
+    logging.info(f"Running Hardcoded Secrets check on {file_path}")
+    issues = []
+    patterns = [
+        r'AKIA[0-9A-Z]{16}',
+        r'(?i)secret[_-]?key\s*=\s*["\']?[A-Za-z0-9/+]{16,}["\']?',
+        r'(?i)password\s*=\s*["\']?.{6,}["\']?'
+    ]
+    for pattern in patterns:
+        for match in re.finditer(pattern, code_str):
+            line_num = code_str[:match.start()].count('\n') + 1
+            issues.append({
+                "line": line_num,
+                "rule": "Hardcoded Secrets",
+                "severity": severity_map["Hardcoded Secrets"],
+                "description": f"Detected hardcoded secret matching pattern: {pattern}"
+            })
+    return issues
+
+def check_logging_and_exceptions(tree, file_path):
+    logging.info(f"Running Logging/Exception Handling check on {file_path}")
+    issues = []
+    logging_imported = False
+    for node in ast.walk(tree):
+        if isinstance(node, ast.Import):
+            for alias in node.names:
+                if alias.name == "logging":
+                    logging_imported = True
+        if isinstance(node, ast.ImportFrom) and node.module == "logging":
+            logging_imported = True
+        if isinstance(node, ast.ExceptHandler):
+            if not node.body or (len(node.body) == 1 and isinstance(node.body[0], ast.Pass)):
+                issues.append({
+                    "line": node.lineno,
+                    "rule": "Logging/Exception Handling",
+                    "severity": severity_map["Logging/Exception Handling"],
+                    "description": "Empty or silent exception block detected."
+                })
+    if not logging_imported:
+        issues.append({
+            "line": 0,
+            "rule": "Logging/Exception Handling",
+            "severity": severity_map["Logging/Exception Handling"],
+            "description": "Logging module not imported; critical actions may not be monitored."
+        })
+    return issues
+
+def scan_code(code_str, file_path):
+    issues = []
+    try:
+        tree = ast.parse(code_str)
+    except Exception as e:
+        logging.error(f"AST parsing failed for {file_path}: {e}")
+        return [{
+            "line": 0,
+            "rule": "Parsing Error",
+            "severity": severity_map["Parsing Error"],
+            "description": f"Code could not be parsed: {e}"
+        }]
+    issues.extend(check_eval_exec(tree, file_path))
+    issues.extend(check_os_system(tree, file_path))
+    issues.extend(check_prompt_injection(tree, file_path))
+    issues.extend(check_hardcoded_secrets(code_str, file_path))
+    issues.extend(check_logging_and_exceptions(tree, file_path))
+    return issues
+
 def audit_directory(directory_path):
     all_results = []
     file_statuses = []
@@ -69,15 +163,16 @@ def audit_directory(directory_path):
                         "description": f"Could not read file: {e}"
                     }]
                     all_results.extend(issues)
+
                 status = "Issues Found" if issues else "Pass"
                 file_statuses.append({
                     "file": fpath,
                     "status": status,
                     "issue_count": len(issues)
                 })
+
     return all_results, file_statuses, scanned_files
 
-# Export to CSV
 def export_to_csv(results, file_statuses, output_path="audit_results.csv"):
     fieldnames = ["File", "Line", "Rule", "Severity", "Description", "Status"]
     with open(output_path, mode="w", newline="", encoding="utf-8") as csvfile:
@@ -114,7 +209,6 @@ def export_to_csv(results, file_statuses, output_path="audit_results.csv"):
     logging.info(f"CSV report saved to {output_path}")
     print(f"✅ CSV report saved to: {output_path}")
 
-# Entry point
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Audit Python AI agent scripts for risks.")
     parser.add_argument("directory", type=str, help="Directory containing agent code")
