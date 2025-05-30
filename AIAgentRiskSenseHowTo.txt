@@ -36,8 +36,9 @@ Ensure you have a directory (e.g., `agents/`) containing AI agent code files:
 
 
 # Run the pilot
-python AIAgentRiskSenseFolderOfAgents.py ./GitHub/awesome-llm-apps --output audit_results.xlsx
-
+ 
+python AIAgentRiskSenseFolderOfAgents.py ../../awesome-llm-apps --csv results.csv
+python AIAgentRiskSenseFolderOfAgents.py ../../python-ai-agent-frameworks-demos --csv results.csv
 
   ✅ 4. **Output / Reporting**
 
