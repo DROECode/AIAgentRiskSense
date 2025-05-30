@@ -1,0 +1,222 @@
+2025-05-30 15:29:56,635 - INFO - Starting audit of directory: ../../awesome-llm-apps
+2025-05-30 15:29:56,635 - INFO - Scanning file: ../../awesome-llm-apps\advanced_ai_agents\autonomous_game_playing_agent_apps\ai_3dpygame_r1\ai_3dpygame_r1.py
+2025-05-30 15:29:56,635 - INFO - No issues found in ../../awesome-llm-apps\advanced_ai_agents\autonomous_game_playing_agent_apps\ai_3dpygame_r1\ai_3dpygame_r1.py
+2025-05-30 15:29:56,635 - INFO - Scanning file: ../../awesome-llm-apps\advanced_ai_agents\autonomous_game_playing_agent_apps\ai_chess_agent\ai_chess_agent.py
+2025-05-30 15:29:56,635 - INFO - No issues found in ../../awesome-llm-apps\advanced_ai_agents\autonomous_game_playing_agent_apps\ai_chess_agent\ai_chess_agent.py
+2025-05-30 15:29:56,635 - INFO - Scanning file: ../../awesome-llm-apps\advanced_ai_agents\autonomous_game_playing_agent_apps\ai_tic_tac_toe_agent\agents.py
+2025-05-30 15:29:56,635 - INFO - No issues found in ../../awesome-llm-apps\advanced_ai_agents\autonomous_game_playing_agent_apps\ai_tic_tac_toe_agent\agents.py
+2025-05-30 15:29:56,650 - INFO - Scanning file: ../../awesome-llm-apps\advanced_ai_agents\autonomous_game_playing_agent_apps\ai_tic_tac_toe_agent\app.py
+2025-05-30 15:29:56,650 - INFO - No issues found in ../../awesome-llm-apps\advanced_ai_agents\autonomous_game_playing_agent_apps\ai_tic_tac_toe_agent\app.py
+2025-05-30 15:29:56,650 - INFO - Scanning file: ../../awesome-llm-apps\advanced_ai_agents\autonomous_game_playing_agent_apps\ai_tic_tac_toe_agent\utils.py
+2025-05-30 15:29:56,650 - INFO - No issues found in ../../awesome-llm-apps\advanced_ai_agents\autonomous_game_playing_agent_apps\ai_tic_tac_toe_agent\utils.py
+2025-05-30 15:29:56,650 - INFO - Scanning file: ../../awesome-llm-apps\advanced_ai_agents\multi_agent_apps\agent_teams\ai_competitor_intelligence_agent_team\competitor_agent_team.py
+2025-05-30 15:29:56,650 - INFO - No issues found in ../../awesome-llm-apps\advanced_ai_agents\multi_agent_apps\agent_teams\ai_competitor_intelligence_agent_team\competitor_agent_team.py
+2025-05-30 15:29:56,650 - INFO - Scanning file: ../../awesome-llm-apps\advanced_ai_agents\multi_agent_apps\agent_teams\ai_finance_agent_team\finance_agent_team.py
+2025-05-30 15:29:56,650 - INFO - No issues found in ../../awesome-llm-apps\advanced_ai_agents\multi_agent_apps\agent_teams\ai_finance_agent_team\finance_agent_team.py
+2025-05-30 15:29:56,650 - INFO - Scanning file: ../../awesome-llm-apps\advanced_ai_agents\multi_agent_apps\agent_teams\ai_game_design_agent_team\game_design_agent_team.py
+2025-05-30 15:29:56,650 - INFO - No issues found in ../../awesome-llm-apps\advanced_ai_agents\multi_agent_apps\agent_teams\ai_game_design_agent_team\game_design_agent_team.py
+2025-05-30 15:29:56,650 - INFO - Scanning file: ../../awesome-llm-apps\advanced_ai_agents\multi_agent_apps\agent_teams\ai_legal_agent_team\legal_agent_team.py
+2025-05-30 15:29:56,650 - INFO - No issues found in ../../awesome-llm-apps\advanced_ai_agents\multi_agent_apps\agent_teams\ai_legal_agent_team\legal_agent_team.py
+2025-05-30 15:29:56,650 - INFO - Scanning file: ../../awesome-llm-apps\advanced_ai_agents\multi_agent_apps\agent_teams\ai_legal_agent_team\local_ai_legal_agent_team\local_legal_agent.py
+2025-05-30 15:29:56,650 - INFO - No issues found in ../../awesome-llm-apps\advanced_ai_agents\multi_agent_apps\agent_teams\ai_legal_agent_team\local_ai_legal_agent_team\local_legal_agent.py
+2025-05-30 15:29:56,650 - INFO - Scanning file: ../../awesome-llm-apps\advanced_ai_agents\multi_agent_apps\agent_teams\ai_recruitment_agent_team\ai_recruitment_agent_team.py
+2025-05-30 15:29:56,650 - INFO - No issues found in ../../awesome-llm-apps\advanced_ai_agents\multi_agent_apps\agent_teams\ai_recruitment_agent_team\ai_recruitment_agent_team.py
+2025-05-30 15:29:56,650 - INFO - Scanning file: ../../awesome-llm-apps\advanced_ai_agents\multi_agent_apps\agent_teams\ai_services_agency\agency.py
+2025-05-30 15:29:56,650 - INFO - No issues found in ../../awesome-llm-apps\advanced_ai_agents\multi_agent_apps\agent_teams\ai_services_agency\agency.py
+2025-05-30 15:29:56,650 - INFO - Scanning file: ../../awesome-llm-apps\advanced_ai_agents\multi_agent_apps\agent_teams\ai_teaching_agent_team\teaching_agent_team.py
+2025-05-30 15:29:56,650 - INFO - No issues found in ../../awesome-llm-apps\advanced_ai_agents\multi_agent_apps\agent_teams\ai_teaching_agent_team\teaching_agent_team.py
+2025-05-30 15:29:56,650 - INFO - Scanning file: ../../awesome-llm-apps\advanced_ai_agents\multi_agent_apps\agent_teams\multimodal_coding_agent_team\ai_coding_agent_o3.py
+2025-05-30 15:29:56,650 - INFO - No issues found in ../../awesome-llm-apps\advanced_ai_agents\multi_agent_apps\agent_teams\multimodal_coding_agent_team\ai_coding_agent_o3.py
+2025-05-30 15:29:56,650 - INFO - Scanning file: ../../awesome-llm-apps\advanced_ai_agents\multi_agent_apps\agent_teams\multimodal_design_agent_team\design_agent_team.py
+2025-05-30 15:29:56,650 - INFO - No issues found in ../../awesome-llm-apps\advanced_ai_agents\multi_agent_apps\agent_teams\multimodal_design_agent_team\design_agent_team.py
+2025-05-30 15:29:56,650 - INFO - Scanning file: ../../awesome-llm-apps\advanced_ai_agents\multi_agent_apps\ai_aqi_analysis_agent\ai_aqi_analysis_agent_gradio.py
+2025-05-30 15:29:56,650 - INFO - No issues found in ../../awesome-llm-apps\advanced_ai_agents\multi_agent_apps\ai_aqi_analysis_agent\ai_aqi_analysis_agent_gradio.py
+2025-05-30 15:29:56,650 - INFO - Scanning file: ../../awesome-llm-apps\advanced_ai_agents\multi_agent_apps\ai_aqi_analysis_agent\ai_aqi_analysis_agent_streamlit.py
+2025-05-30 15:29:56,650 - INFO - No issues found in ../../awesome-llm-apps\advanced_ai_agents\multi_agent_apps\ai_aqi_analysis_agent\ai_aqi_analysis_agent_streamlit.py
+2025-05-30 15:29:56,650 - INFO - Scanning file: ../../awesome-llm-apps\advanced_ai_agents\multi_agent_apps\ai_domain_deep_research_agent\ai_domain_deep_research_agent.py
+2025-05-30 15:29:56,650 - INFO - No issues found in ../../awesome-llm-apps\advanced_ai_agents\multi_agent_apps\ai_domain_deep_research_agent\ai_domain_deep_research_agent.py
+2025-05-30 15:29:56,650 - INFO - Scanning file: ../../awesome-llm-apps\advanced_ai_agents\multi_agent_apps\ai_financial_coach_agent\ai_financial_coach_agent.py
+2025-05-30 15:29:56,650 - INFO - No issues found in ../../awesome-llm-apps\advanced_ai_agents\multi_agent_apps\ai_financial_coach_agent\ai_financial_coach_agent.py
+2025-05-30 15:29:56,650 - INFO - Scanning file: ../../awesome-llm-apps\advanced_ai_agents\multi_agent_apps\ai_mental_wellbeing_agent\ai_mental_wellbeing_agent.py
+2025-05-30 15:29:56,650 - INFO - No issues found in ../../awesome-llm-apps\advanced_ai_agents\multi_agent_apps\ai_mental_wellbeing_agent\ai_mental_wellbeing_agent.py
+2025-05-30 15:29:56,650 - INFO - Scanning file: ../../awesome-llm-apps\advanced_ai_agents\multi_agent_apps\ai_Self-Evolving_agent\ai_Self-Evolving_agent.py
+2025-05-30 15:29:56,650 - INFO - No issues found in ../../awesome-llm-apps\advanced_ai_agents\multi_agent_apps\ai_Self-Evolving_agent\ai_Self-Evolving_agent.py
+2025-05-30 15:29:56,650 - INFO - Scanning file: ../../awesome-llm-apps\advanced_ai_agents\multi_agent_apps\multi_agent_researcher\research_agent.py
+2025-05-30 15:29:56,650 - INFO - No issues found in ../../awesome-llm-apps\advanced_ai_agents\multi_agent_apps\multi_agent_researcher\research_agent.py
+2025-05-30 15:29:56,650 - INFO - Scanning file: ../../awesome-llm-apps\advanced_ai_agents\multi_agent_apps\multi_agent_researcher\research_agent_llama3.py
+2025-05-30 15:29:56,650 - INFO - No issues found in ../../awesome-llm-apps\advanced_ai_agents\multi_agent_apps\multi_agent_researcher\research_agent_llama3.py
+2025-05-30 15:29:56,650 - INFO - Scanning file: ../../awesome-llm-apps\advanced_ai_agents\single_agent_apps\ai_customer_support_agent\customer_support_agent.py
+2025-05-30 15:29:56,650 - INFO - No issues found in ../../awesome-llm-apps\advanced_ai_agents\single_agent_apps\ai_customer_support_agent\customer_support_agent.py
+2025-05-30 15:29:56,650 - INFO - Scanning file: ../../awesome-llm-apps\advanced_ai_agents\single_agent_apps\ai_deep_research_agent\deep_research_openai.py
+2025-05-30 15:29:56,650 - INFO - No issues found in ../../awesome-llm-apps\advanced_ai_agents\single_agent_apps\ai_deep_research_agent\deep_research_openai.py
+2025-05-30 15:29:56,650 - INFO - Scanning file: ../../awesome-llm-apps\advanced_ai_agents\single_agent_apps\ai_health_fitness_agent\health_agent.py
+2025-05-30 15:29:56,650 - INFO - No issues found in ../../awesome-llm-apps\advanced_ai_agents\single_agent_apps\ai_health_fitness_agent\health_agent.py
+2025-05-30 15:29:56,650 - INFO - Scanning file: ../../awesome-llm-apps\advanced_ai_agents\single_agent_apps\ai_investment_agent\investment_agent.py
+2025-05-30 15:29:56,650 - INFO - No issues found in ../../awesome-llm-apps\advanced_ai_agents\single_agent_apps\ai_investment_agent\investment_agent.py
+2025-05-30 15:29:56,650 - INFO - Scanning file: ../../awesome-llm-apps\advanced_ai_agents\single_agent_apps\ai_journalist_agent\journalist_agent.py
+2025-05-30 15:29:56,650 - INFO - No issues found in ../../awesome-llm-apps\advanced_ai_agents\single_agent_apps\ai_journalist_agent\journalist_agent.py
+2025-05-30 15:29:56,650 - INFO - Scanning file: ../../awesome-llm-apps\advanced_ai_agents\single_agent_apps\ai_lead_generation_agent\ai_lead_generation_agent.py
+2025-05-30 15:29:56,650 - INFO - No issues found in ../../awesome-llm-apps\advanced_ai_agents\single_agent_apps\ai_lead_generation_agent\ai_lead_generation_agent.py
+2025-05-30 15:29:56,650 - INFO - Scanning file: ../../awesome-llm-apps\advanced_ai_agents\single_agent_apps\ai_meeting_agent\meeting_agent.py
+2025-05-30 15:29:56,650 - INFO - No issues found in ../../awesome-llm-apps\advanced_ai_agents\single_agent_apps\ai_meeting_agent\meeting_agent.py
+2025-05-30 15:29:56,650 - INFO - Scanning file: ../../awesome-llm-apps\advanced_ai_agents\single_agent_apps\ai_movie_production_agent\movie_production_agent.py
+2025-05-30 15:29:56,650 - INFO - No issues found in ../../awesome-llm-apps\advanced_ai_agents\single_agent_apps\ai_movie_production_agent\movie_production_agent.py
+2025-05-30 15:29:56,650 - INFO - Scanning file: ../../awesome-llm-apps\advanced_ai_agents\single_agent_apps\ai_personal_finance_agent\finance_agent.py
+2025-05-30 15:29:56,650 - INFO - No issues found in ../../awesome-llm-apps\advanced_ai_agents\single_agent_apps\ai_personal_finance_agent\finance_agent.py
+2025-05-30 15:29:56,650 - INFO - Scanning file: ../../awesome-llm-apps\advanced_ai_agents\single_agent_apps\ai_startup_insight_fire1_agent\ai_startup_insight_fire1_agent.py
+2025-05-30 15:29:56,650 - INFO - No issues found in ../../awesome-llm-apps\advanced_ai_agents\single_agent_apps\ai_startup_insight_fire1_agent\ai_startup_insight_fire1_agent.py
+2025-05-30 15:29:56,665 - INFO - Scanning file: ../../awesome-llm-apps\advanced_ai_agents\single_agent_apps\ai_system_architect_r1\ai_system_architect_r1.py
+2025-05-30 15:29:56,665 - INFO - No issues found in ../../awesome-llm-apps\advanced_ai_agents\single_agent_apps\ai_system_architect_r1\ai_system_architect_r1.py
+2025-05-30 15:29:56,665 - INFO - Scanning file: ../../awesome-llm-apps\advanced_llm_apps\chat_with_X_tutorials\chat_with_github\chat_github.py
+2025-05-30 15:29:56,665 - INFO - No issues found in ../../awesome-llm-apps\advanced_llm_apps\chat_with_X_tutorials\chat_with_github\chat_github.py
+2025-05-30 15:29:56,665 - INFO - Scanning file: ../../awesome-llm-apps\advanced_llm_apps\chat_with_X_tutorials\chat_with_github\chat_github_llama3.py
+2025-05-30 15:29:56,665 - INFO - No issues found in ../../awesome-llm-apps\advanced_llm_apps\chat_with_X_tutorials\chat_with_github\chat_github_llama3.py
+2025-05-30 15:29:56,665 - INFO - Scanning file: ../../awesome-llm-apps\advanced_llm_apps\chat_with_X_tutorials\chat_with_gmail\chat_gmail.py
+2025-05-30 15:29:56,665 - INFO - No issues found in ../../awesome-llm-apps\advanced_llm_apps\chat_with_X_tutorials\chat_with_gmail\chat_gmail.py
+2025-05-30 15:29:56,665 - INFO - Scanning file: ../../awesome-llm-apps\advanced_llm_apps\chat_with_X_tutorials\chat_with_pdf\chat_pdf.py
+2025-05-30 15:29:56,665 - INFO - No issues found in ../../awesome-llm-apps\advanced_llm_apps\chat_with_X_tutorials\chat_with_pdf\chat_pdf.py
+2025-05-30 15:29:56,665 - INFO - Scanning file: ../../awesome-llm-apps\advanced_llm_apps\chat_with_X_tutorials\chat_with_pdf\chat_pdf_llama3.2.py
+2025-05-30 15:29:56,665 - INFO - No issues found in ../../awesome-llm-apps\advanced_llm_apps\chat_with_X_tutorials\chat_with_pdf\chat_pdf_llama3.2.py
+2025-05-30 15:29:56,665 - INFO - Scanning file: ../../awesome-llm-apps\advanced_llm_apps\chat_with_X_tutorials\chat_with_pdf\chat_pdf_llama3.py
+2025-05-30 15:29:56,665 - INFO - No issues found in ../../awesome-llm-apps\advanced_llm_apps\chat_with_X_tutorials\chat_with_pdf\chat_pdf_llama3.py
+2025-05-30 15:29:56,665 - INFO - Scanning file: ../../awesome-llm-apps\advanced_llm_apps\chat_with_X_tutorials\chat_with_research_papers\chat_arxiv.py
+2025-05-30 15:29:56,665 - INFO - No issues found in ../../awesome-llm-apps\advanced_llm_apps\chat_with_X_tutorials\chat_with_research_papers\chat_arxiv.py
+2025-05-30 15:29:56,665 - INFO - Scanning file: ../../awesome-llm-apps\advanced_llm_apps\chat_with_X_tutorials\chat_with_research_papers\chat_arxiv_llama3.py
+2025-05-30 15:29:56,665 - INFO - No issues found in ../../awesome-llm-apps\advanced_llm_apps\chat_with_X_tutorials\chat_with_research_papers\chat_arxiv_llama3.py
+2025-05-30 15:29:56,665 - INFO - Scanning file: ../../awesome-llm-apps\advanced_llm_apps\chat_with_X_tutorials\chat_with_substack\chat_substack.py
+2025-05-30 15:29:56,665 - INFO - No issues found in ../../awesome-llm-apps\advanced_llm_apps\chat_with_X_tutorials\chat_with_substack\chat_substack.py
+2025-05-30 15:29:56,665 - INFO - Scanning file: ../../awesome-llm-apps\advanced_llm_apps\chat_with_X_tutorials\chat_with_youtube_videos\chat_youtube.py
+2025-05-30 15:29:56,665 - INFO - No issues found in ../../awesome-llm-apps\advanced_llm_apps\chat_with_X_tutorials\chat_with_youtube_videos\chat_youtube.py
+2025-05-30 15:29:56,665 - INFO - Scanning file: ../../awesome-llm-apps\advanced_llm_apps\cursor_ai_experiments\ai_web_scrapper.py
+2025-05-30 15:29:56,665 - INFO - No issues found in ../../awesome-llm-apps\advanced_llm_apps\cursor_ai_experiments\ai_web_scrapper.py
+2025-05-30 15:29:56,665 - INFO - Scanning file: ../../awesome-llm-apps\advanced_llm_apps\cursor_ai_experiments\chatgpt_clone_llama3.py
+2025-05-30 15:29:56,665 - INFO - No issues found in ../../awesome-llm-apps\advanced_llm_apps\cursor_ai_experiments\chatgpt_clone_llama3.py
+2025-05-30 15:29:56,665 - INFO - Scanning file: ../../awesome-llm-apps\advanced_llm_apps\cursor_ai_experiments\multi_agent_researcher.py
+2025-05-30 15:29:56,665 - INFO - No issues found in ../../awesome-llm-apps\advanced_llm_apps\cursor_ai_experiments\multi_agent_researcher.py
+2025-05-30 15:29:56,665 - INFO - Scanning file: ../../awesome-llm-apps\advanced_llm_apps\cursor_ai_experiments\llm_router_app\llm_router.py
+2025-05-30 15:29:56,665 - INFO - No issues found in ../../awesome-llm-apps\advanced_llm_apps\cursor_ai_experiments\llm_router_app\llm_router.py
+2025-05-30 15:29:56,665 - INFO - Scanning file: ../../awesome-llm-apps\advanced_llm_apps\cursor_ai_experiments\local_chatgpt_clone\chatgpt_clone_llama3.py
+2025-05-30 15:29:56,665 - INFO - No issues found in ../../awesome-llm-apps\advanced_llm_apps\cursor_ai_experiments\local_chatgpt_clone\chatgpt_clone_llama3.py
+2025-05-30 15:29:56,665 - INFO - Scanning file: ../../awesome-llm-apps\advanced_llm_apps\llm_apps_with_memory_tutorials\ai_arxiv_agent_memory\ai_arxiv_agent_memory.py
+2025-05-30 15:29:56,665 - INFO - No issues found in ../../awesome-llm-apps\advanced_llm_apps\llm_apps_with_memory_tutorials\ai_arxiv_agent_memory\ai_arxiv_agent_memory.py
+2025-05-30 15:29:56,665 - INFO - Scanning file: ../../awesome-llm-apps\advanced_llm_apps\llm_apps_with_memory_tutorials\ai_travel_agent_memory\travel_agent_memory.py
+2025-05-30 15:29:56,665 - INFO - No issues found in ../../awesome-llm-apps\advanced_llm_apps\llm_apps_with_memory_tutorials\ai_travel_agent_memory\travel_agent_memory.py
+2025-05-30 15:29:56,665 - INFO - Scanning file: ../../awesome-llm-apps\advanced_llm_apps\llm_apps_with_memory_tutorials\llama3_stateful_chat\local_llama3_chat.py
+2025-05-30 15:29:56,665 - INFO - No issues found in ../../awesome-llm-apps\advanced_llm_apps\llm_apps_with_memory_tutorials\llama3_stateful_chat\local_llama3_chat.py
+2025-05-30 15:29:56,665 - INFO - Scanning file: ../../awesome-llm-apps\advanced_llm_apps\llm_apps_with_memory_tutorials\llm_app_personalized_memory\llm_app_memory.py
+2025-05-30 15:29:56,665 - INFO - No issues found in ../../awesome-llm-apps\advanced_llm_apps\llm_apps_with_memory_tutorials\llm_app_personalized_memory\llm_app_memory.py
+2025-05-30 15:29:56,665 - INFO - Scanning file: ../../awesome-llm-apps\advanced_llm_apps\llm_apps_with_memory_tutorials\local_chatgpt_with_memory\local_chatgpt_memory.py
+2025-05-30 15:29:56,665 - INFO - No issues found in ../../awesome-llm-apps\advanced_llm_apps\llm_apps_with_memory_tutorials\local_chatgpt_with_memory\local_chatgpt_memory.py
+2025-05-30 15:29:56,665 - INFO - Scanning file: ../../awesome-llm-apps\advanced_llm_apps\llm_apps_with_memory_tutorials\multi_llm_memory\multi_llm_memory.py
+2025-05-30 15:29:56,665 - INFO - No issues found in ../../awesome-llm-apps\advanced_llm_apps\llm_apps_with_memory_tutorials\multi_llm_memory\multi_llm_memory.py
+2025-05-30 15:29:56,665 - INFO - Scanning file: ../../awesome-llm-apps\advanced_llm_apps\llm_finetuning_tutorials\llama3.2_finetuning\finetune_llama3.2.py
+2025-05-30 15:29:56,665 - INFO - No issues found in ../../awesome-llm-apps\advanced_llm_apps\llm_finetuning_tutorials\llama3.2_finetuning\finetune_llama3.2.py
+2025-05-30 15:29:56,665 - INFO - Scanning file: ../../awesome-llm-apps\mcp_ai_agents\ai_travel_planner_mcp_agent_team\app.py
+2025-05-30 15:29:56,665 - INFO - No issues found in ../../awesome-llm-apps\mcp_ai_agents\ai_travel_planner_mcp_agent_team\app.py
+2025-05-30 15:29:56,665 - INFO - Scanning file: ../../awesome-llm-apps\mcp_ai_agents\ai_travel_planner_mcp_agent_team\calendar_mcp.py
+2025-05-30 15:29:56,665 - INFO - No issues found in ../../awesome-llm-apps\mcp_ai_agents\ai_travel_planner_mcp_agent_team\calendar_mcp.py
+2025-05-30 15:29:56,665 - INFO - Scanning file: ../../awesome-llm-apps\mcp_ai_agents\browser_mcp_agent\main.py
+2025-05-30 15:29:56,665 - INFO - No issues found in ../../awesome-llm-apps\mcp_ai_agents\browser_mcp_agent\main.py
+2025-05-30 15:29:56,665 - INFO - Scanning file: ../../awesome-llm-apps\mcp_ai_agents\github_mcp_agent\github_agent.py
+2025-05-30 15:29:56,665 - INFO - No issues found in ../../awesome-llm-apps\mcp_ai_agents\github_mcp_agent\github_agent.py
+2025-05-30 15:29:56,665 - INFO - Scanning file: ../../awesome-llm-apps\mcp_ai_agents\notion_mcp_agent\notion_mcp_agent.py
+2025-05-30 15:29:56,665 - INFO - No issues found in ../../awesome-llm-apps\mcp_ai_agents\notion_mcp_agent\notion_mcp_agent.py
+2025-05-30 15:29:56,665 - INFO - Scanning file: ../../awesome-llm-apps\rag_tutorials\agentic_rag\rag_agent.py
+2025-05-30 15:29:56,665 - INFO - No issues found in ../../awesome-llm-apps\rag_tutorials\agentic_rag\rag_agent.py
+2025-05-30 15:29:56,665 - INFO - Scanning file: ../../awesome-llm-apps\rag_tutorials\agentic_rag_math_agent\app\benchmark.py
+2025-05-30 15:29:56,665 - INFO - No issues found in ../../awesome-llm-apps\rag_tutorials\agentic_rag_math_agent\app\benchmark.py
+2025-05-30 15:29:56,665 - INFO - Scanning file: ../../awesome-llm-apps\rag_tutorials\agentic_rag_math_agent\app\streamlit.py
+2025-05-30 15:29:56,665 - INFO - No issues found in ../../awesome-llm-apps\rag_tutorials\agentic_rag_math_agent\app\streamlit.py
+2025-05-30 15:29:56,665 - INFO - Scanning file: ../../awesome-llm-apps\rag_tutorials\agentic_rag_math_agent\data\load_gsm8k_data.py
+2025-05-30 15:29:56,665 - INFO - No issues found in ../../awesome-llm-apps\rag_tutorials\agentic_rag_math_agent\data\load_gsm8k_data.py
+2025-05-30 15:29:56,665 - INFO - Scanning file: ../../awesome-llm-apps\rag_tutorials\agentic_rag_math_agent\rag\guardrails.py
+2025-05-30 15:29:56,665 - INFO - No issues found in ../../awesome-llm-apps\rag_tutorials\agentic_rag_math_agent\rag\guardrails.py
+2025-05-30 15:29:56,665 - INFO - Scanning file: ../../awesome-llm-apps\rag_tutorials\agentic_rag_math_agent\rag\query_router.py
+2025-05-30 15:29:56,665 - INFO - No issues found in ../../awesome-llm-apps\rag_tutorials\agentic_rag_math_agent\rag\query_router.py
+2025-05-30 15:29:56,665 - INFO - Scanning file: ../../awesome-llm-apps\rag_tutorials\agentic_rag_math_agent\rag\vector.py
+2025-05-30 15:29:56,665 - INFO - No issues found in ../../awesome-llm-apps\rag_tutorials\agentic_rag_math_agent\rag\vector.py
+2025-05-30 15:29:56,665 - INFO - Scanning file: ../../awesome-llm-apps\rag_tutorials\ai_blog_search\app.py
+2025-05-30 15:29:56,665 - INFO - No issues found in ../../awesome-llm-apps\rag_tutorials\ai_blog_search\app.py
+2025-05-30 15:29:56,665 - INFO - Scanning file: ../../awesome-llm-apps\rag_tutorials\autonomous_rag\autorag.py
+2025-05-30 15:29:56,665 - INFO - No issues found in ../../awesome-llm-apps\rag_tutorials\autonomous_rag\autorag.py
+2025-05-30 15:29:56,665 - INFO - Scanning file: ../../awesome-llm-apps\rag_tutorials\corrective_rag\corrective_rag.py
+2025-05-30 15:29:56,665 - INFO - No issues found in ../../awesome-llm-apps\rag_tutorials\corrective_rag\corrective_rag.py
+2025-05-30 15:29:56,665 - INFO - Scanning file: ../../awesome-llm-apps\rag_tutorials\deepseek_local_rag_agent\deepseek_rag_agent.py
+2025-05-30 15:29:56,665 - INFO - No issues found in ../../awesome-llm-apps\rag_tutorials\deepseek_local_rag_agent\deepseek_rag_agent.py
+2025-05-30 15:29:56,681 - INFO - Scanning file: ../../awesome-llm-apps\rag_tutorials\gemini_agentic_rag\agentic_rag_gemini.py
+2025-05-30 15:29:56,681 - INFO - No issues found in ../../awesome-llm-apps\rag_tutorials\gemini_agentic_rag\agentic_rag_gemini.py
+2025-05-30 15:29:56,682 - INFO - Scanning file: ../../awesome-llm-apps\rag_tutorials\hybrid_search_rag\main.py
+2025-05-30 15:29:56,682 - INFO - No issues found in ../../awesome-llm-apps\rag_tutorials\hybrid_search_rag\main.py
+2025-05-30 15:29:56,682 - INFO - Scanning file: ../../awesome-llm-apps\rag_tutorials\llama3.1_local_rag\llama3.1_local_rag.py
+2025-05-30 15:29:56,682 - INFO - No issues found in ../../awesome-llm-apps\rag_tutorials\llama3.1_local_rag\llama3.1_local_rag.py
+2025-05-30 15:29:56,682 - INFO - Scanning file: ../../awesome-llm-apps\rag_tutorials\local_hybrid_search_rag\local_main.py
+2025-05-30 15:29:56,682 - INFO - No issues found in ../../awesome-llm-apps\rag_tutorials\local_hybrid_search_rag\local_main.py
+2025-05-30 15:29:56,682 - INFO - Scanning file: ../../awesome-llm-apps\rag_tutorials\local_rag_agent\local_rag_agent.py
+2025-05-30 15:29:56,682 - INFO - No issues found in ../../awesome-llm-apps\rag_tutorials\local_rag_agent\local_rag_agent.py
+2025-05-30 15:29:56,682 - INFO - Scanning file: ../../awesome-llm-apps\rag_tutorials\qwen_local_rag\qwen_local_rag_agent.py
+2025-05-30 15:29:56,682 - INFO - No issues found in ../../awesome-llm-apps\rag_tutorials\qwen_local_rag\qwen_local_rag_agent.py
+2025-05-30 15:29:56,682 - INFO - Scanning file: ../../awesome-llm-apps\rag_tutorials\rag-as-a-service\rag_app.py
+2025-05-30 15:29:56,682 - INFO - No issues found in ../../awesome-llm-apps\rag_tutorials\rag-as-a-service\rag_app.py
+2025-05-30 15:29:56,682 - INFO - Scanning file: ../../awesome-llm-apps\rag_tutorials\rag_agent_cohere\rag_agent_cohere.py
+2025-05-30 15:29:56,682 - INFO - No issues found in ../../awesome-llm-apps\rag_tutorials\rag_agent_cohere\rag_agent_cohere.py
+2025-05-30 15:29:56,682 - INFO - Scanning file: ../../awesome-llm-apps\rag_tutorials\rag_chain\app.py
+2025-05-30 15:29:56,682 - INFO - No issues found in ../../awesome-llm-apps\rag_tutorials\rag_chain\app.py
+2025-05-30 15:29:56,682 - INFO - Scanning file: ../../awesome-llm-apps\rag_tutorials\rag_database_routing\rag_database_routing.py
+2025-05-30 15:29:56,682 - INFO - No issues found in ../../awesome-llm-apps\rag_tutorials\rag_database_routing\rag_database_routing.py
+2025-05-30 15:29:56,682 - INFO - Scanning file: ../../awesome-llm-apps\rag_tutorials\vision_rag\vision_rag.py
+2025-05-30 15:29:56,682 - INFO - No issues found in ../../awesome-llm-apps\rag_tutorials\vision_rag\vision_rag.py
+2025-05-30 15:29:56,682 - INFO - Scanning file: ../../awesome-llm-apps\starter_ai_agents\ai_blog_to_podcast_agent\blog_to_podcast_agent.py
+2025-05-30 15:29:56,682 - INFO - No issues found in ../../awesome-llm-apps\starter_ai_agents\ai_blog_to_podcast_agent\blog_to_podcast_agent.py
+2025-05-30 15:29:56,682 - INFO - Scanning file: ../../awesome-llm-apps\starter_ai_agents\ai_breakup_recovery_agent\ai_breakup_recovery_agent.py
+2025-05-30 15:29:56,682 - INFO - No issues found in ../../awesome-llm-apps\starter_ai_agents\ai_breakup_recovery_agent\ai_breakup_recovery_agent.py
+2025-05-30 15:29:56,682 - INFO - Scanning file: ../../awesome-llm-apps\starter_ai_agents\ai_data_analysis_agent\ai_data_analyst.py
+2025-05-30 15:29:56,682 - INFO - No issues found in ../../awesome-llm-apps\starter_ai_agents\ai_data_analysis_agent\ai_data_analyst.py
+2025-05-30 15:29:56,682 - INFO - Scanning file: ../../awesome-llm-apps\starter_ai_agents\ai_data_visualisation_agent\ai_data_visualisation_agent.py
+2025-05-30 15:29:56,682 - INFO - No issues found in ../../awesome-llm-apps\starter_ai_agents\ai_data_visualisation_agent\ai_data_visualisation_agent.py
+2025-05-30 15:29:56,682 - INFO - Scanning file: ../../awesome-llm-apps\starter_ai_agents\ai_medical_imaging_agent\ai_medical_imaging.py
+2025-05-30 15:29:56,682 - INFO - No issues found in ../../awesome-llm-apps\starter_ai_agents\ai_medical_imaging_agent\ai_medical_imaging.py
+2025-05-30 15:29:56,682 - INFO - Scanning file: ../../awesome-llm-apps\starter_ai_agents\ai_meme_generator_agent_browseruse\ai_meme_generator_agent.py
+2025-05-30 15:29:56,682 - INFO - No issues found in ../../awesome-llm-apps\starter_ai_agents\ai_meme_generator_agent_browseruse\ai_meme_generator_agent.py
+2025-05-30 15:29:56,682 - INFO - Scanning file: ../../awesome-llm-apps\starter_ai_agents\ai_music_generator_agent\music_generator_agent.py
+2025-05-30 15:29:56,682 - INFO - No issues found in ../../awesome-llm-apps\starter_ai_agents\ai_music_generator_agent\music_generator_agent.py
+2025-05-30 15:29:56,682 - INFO - Scanning file: ../../awesome-llm-apps\starter_ai_agents\ai_reasoning_agent\local_ai_reasoning_agent.py
+2025-05-30 15:29:56,682 - INFO - No issues found in ../../awesome-llm-apps\starter_ai_agents\ai_reasoning_agent\local_ai_reasoning_agent.py
+2025-05-30 15:29:56,682 - INFO - Scanning file: ../../awesome-llm-apps\starter_ai_agents\ai_reasoning_agent\reasoning_agent.py
+2025-05-30 15:29:56,682 - INFO - No issues found in ../../awesome-llm-apps\starter_ai_agents\ai_reasoning_agent\reasoning_agent.py
+2025-05-30 15:29:56,682 - INFO - Scanning file: ../../awesome-llm-apps\starter_ai_agents\ai_startup_trend_analysis_agent\startup_trends_agent.py
+2025-05-30 15:29:56,682 - INFO - No issues found in ../../awesome-llm-apps\starter_ai_agents\ai_startup_trend_analysis_agent\startup_trends_agent.py
+2025-05-30 15:29:56,682 - INFO - Scanning file: ../../awesome-llm-apps\starter_ai_agents\ai_travel_agent\local_travel_agent.py
+2025-05-30 15:29:56,682 - INFO - No issues found in ../../awesome-llm-apps\starter_ai_agents\ai_travel_agent\local_travel_agent.py
+2025-05-30 15:29:56,682 - INFO - Scanning file: ../../awesome-llm-apps\starter_ai_agents\ai_travel_agent\travel_agent.py
+2025-05-30 15:29:56,682 - INFO - No issues found in ../../awesome-llm-apps\starter_ai_agents\ai_travel_agent\travel_agent.py
+2025-05-30 15:29:56,682 - INFO - Scanning file: ../../awesome-llm-apps\starter_ai_agents\gemini_multimodal_agent_demo\multimodal_ai_agent.py
+2025-05-30 15:29:56,682 - INFO - No issues found in ../../awesome-llm-apps\starter_ai_agents\gemini_multimodal_agent_demo\multimodal_ai_agent.py
+2025-05-30 15:29:56,682 - INFO - Scanning file: ../../awesome-llm-apps\starter_ai_agents\local_news_agent_openai_swarm\news_agent.py
+2025-05-30 15:29:56,682 - INFO - No issues found in ../../awesome-llm-apps\starter_ai_agents\local_news_agent_openai_swarm\news_agent.py
+2025-05-30 15:29:56,682 - INFO - Scanning file: ../../awesome-llm-apps\starter_ai_agents\mixture_of_agents\mixture-of-agents.py
+2025-05-30 15:29:56,682 - INFO - No issues found in ../../awesome-llm-apps\starter_ai_agents\mixture_of_agents\mixture-of-agents.py
+2025-05-30 15:29:56,682 - INFO - Scanning file: ../../awesome-llm-apps\starter_ai_agents\multimodal_ai_agent\multimodal_reasoning_agent.py
+2025-05-30 15:29:56,682 - INFO - No issues found in ../../awesome-llm-apps\starter_ai_agents\multimodal_ai_agent\multimodal_reasoning_agent.py
+2025-05-30 15:29:56,682 - INFO - Scanning file: ../../awesome-llm-apps\starter_ai_agents\multimodal_ai_agent\mutimodal_agent.py
+2025-05-30 15:29:56,682 - INFO - No issues found in ../../awesome-llm-apps\starter_ai_agents\multimodal_ai_agent\mutimodal_agent.py
+2025-05-30 15:29:56,682 - INFO - Scanning file: ../../awesome-llm-apps\starter_ai_agents\opeani_research_agent\research_agent.py
+2025-05-30 15:29:56,682 - INFO - No issues found in ../../awesome-llm-apps\starter_ai_agents\opeani_research_agent\research_agent.py
+2025-05-30 15:29:56,682 - INFO - Scanning file: ../../awesome-llm-apps\starter_ai_agents\web_scrapping_ai_agent\ai_scrapper.py
+2025-05-30 15:29:56,682 - INFO - No issues found in ../../awesome-llm-apps\starter_ai_agents\web_scrapping_ai_agent\ai_scrapper.py
+2025-05-30 15:29:56,682 - INFO - Scanning file: ../../awesome-llm-apps\starter_ai_agents\web_scrapping_ai_agent\local_ai_scrapper.py
+2025-05-30 15:29:56,682 - INFO - No issues found in ../../awesome-llm-apps\starter_ai_agents\web_scrapping_ai_agent\local_ai_scrapper.py
+2025-05-30 15:29:56,682 - INFO - Scanning file: ../../awesome-llm-apps\starter_ai_agents\xai_finance_agent\xai_finance_agent.py
+2025-05-30 15:29:56,682 - INFO - No issues found in ../../awesome-llm-apps\starter_ai_agents\xai_finance_agent\xai_finance_agent.py
+2025-05-30 15:29:56,682 - INFO - Scanning file: ../../awesome-llm-apps\voice_ai_agents\ai_audio_tour_agent\agent.py
+2025-05-30 15:29:56,682 - INFO - No issues found in ../../awesome-llm-apps\voice_ai_agents\ai_audio_tour_agent\agent.py
+2025-05-30 15:29:56,682 - INFO - Scanning file: ../../awesome-llm-apps\voice_ai_agents\ai_audio_tour_agent\ai_audio_tour_agent.py
+2025-05-30 15:29:56,682 - INFO - No issues found in ../../awesome-llm-apps\voice_ai_agents\ai_audio_tour_agent\ai_audio_tour_agent.py
+2025-05-30 15:29:56,682 - INFO - Scanning file: ../../awesome-llm-apps\voice_ai_agents\ai_audio_tour_agent\manager.py
+2025-05-30 15:29:56,682 - INFO - No issues found in ../../awesome-llm-apps\voice_ai_agents\ai_audio_tour_agent\manager.py
+2025-05-30 15:29:56,682 - INFO - Scanning file: ../../awesome-llm-apps\voice_ai_agents\ai_audio_tour_agent\printer.py
+2025-05-30 15:29:56,682 - INFO - No issues found in ../../awesome-llm-apps\voice_ai_agents\ai_audio_tour_agent\printer.py
+2025-05-30 15:29:56,682 - INFO - Scanning file: ../../awesome-llm-apps\voice_ai_agents\customer_support_voice_agent\customer_support_voice_agent.py
+2025-05-30 15:29:56,682 - INFO - No issues found in ../../awesome-llm-apps\voice_ai_agents\customer_support_voice_agent\customer_support_voice_agent.py
+2025-05-30 15:29:56,682 - INFO - Scanning file: ../../awesome-llm-apps\voice_ai_agents\voice_rag_openaisdk\rag_voice.py
+2025-05-30 15:29:56,682 - INFO - No issues found in ../../awesome-llm-apps\voice_ai_agents\voice_rag_openaisdk\rag_voice.py
+2025-05-30 15:29:56,697 - INFO - CSV report saved to results.csv

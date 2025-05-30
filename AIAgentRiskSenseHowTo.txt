@@ -25,54 +25,19 @@ Ensure you have a directory (e.g., `agents/`) containing AI agent code files:
 ```
 /project-root/
 │
-├── audit_tool.py         # The static scanner (from our prototype)
-├── agents/               # Directory with agent code
-│   ├── agent1.py
-│   ├── agent2.py
-│   └── config.yaml
+├── AIAgentRiskSenseFolderOfAgents.py         # The static scanner (from our prototype)
+
 ```
 
 ---
 
   ✅ 3. **Main Audit Script**
 
-Update `audit_tool.py` with logic to:
 
-* **Recursively scan `.py`, `.yaml`, `.json` files**
-* Apply static analysis rules to Python files
-* Optionally, scan config files for known risky patterns
-
-Example main loop:
-
-```python
-import os
-
-def audit_directory(directory_path):
-    results = []
-    for root, dirs, files in os.walk(directory_path):
-        for fname in files:
-            fpath = os.path.join(root, fname)
-            if fname.endswith(".py"):
-                with open(fpath, 'r', encoding='utf-8') as f:
-                    code = f.read()
-                    issues = scan_code(code)
-                    for issue in issues:
-                        results.append({
-                            "file": fpath,
-                            "line": issue["line"],
-                            "rule": issue["rule"],
-                            "description": issue["description"]
-                        })
-    return results
 
 # Run the pilot
-if __name__ == "__main__":
-    from pprint import pprint
-    issues_found = audit_directory("agents")
-    pprint(issues_found)
-```
+python AIAgentRiskSenseFolderOfAgents.py ./GitHub/awesome-llm-apps --output audit_results.xlsx
 
----
 
   ✅ 4. **Output / Reporting**
 
