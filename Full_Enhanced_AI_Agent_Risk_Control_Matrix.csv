@@ -1,0 +1,45 @@
+Risk,Likelihood,Impact,Control Suggestions,Risk Owner,Residual Risk,Framework Alignment
+Prompt Injection,High,High,Sanitize and validate inputs; limit agent capabilities.,Security Engineer,Medium,NIST SP 800-53 AC-10
+Code Injection,Medium,High,Restrict code execution contexts; use sandboxing.,Security Engineer,Low,ISO 27001 A.14.2.5
+Unauthorized Access,High,High,"Implement RBAC, authentication, and audit trails.",IT Admin,Medium,NIST SP 800-53 AC-2
+Hardcoded Secrets,High,High,Use secure secret management tools; audit code.,DevOps,Medium,ISO 27001 A.9.2.1
+PII Mishandling,High,High,Anonymize data; enforce data governance policies.,Data Privacy Officer,Medium,"GDPR Art. 5, ISO 27701"
+Retention Policy Violations,Medium,Medium,Enforce automatic data purging mechanisms.,Compliance Officer,Low,NIST SP 800-53 SI-12
+Hallucination,High,High,Use retrieval-augmented generation (RAG); human review.,ML Engineer,Medium,COSO Principle 13
+Non-determinism,Medium,Medium,Log versioned outputs; use deterministic prompts.,ML Engineer,Low,ISO 27001 A.12.1.2
+Lack of Explainability,Medium,High,Implement explainable AI techniques; document logic.,AI Governance Lead,Medium,NIST Explainable AI
+Algorithmic Bias,High,High,Audit training data; run fairness tests.,AI Ethics Officer,Medium,COSO Principle 8
+Opaque Decision Logic,Medium,High,Use interpretable models where possible.,AI Governance Lead,Medium,NIST AI RMF
+Model Drift,Medium,High,Monitor performance; retrain models regularly.,ML Ops Lead,Medium,ISO 27001 A.12.6.1
+Lack of Version Control,High,Medium,Use model registries; CI/CD for models.,DevOps,Low,NIST SP 800-53 CM-3
+IP Infringement,Medium,High,Train on licensed data; use content filters.,Legal Counsel,Low,ISO 27001 A.18.1.2
+Fabricated Citations,High,Medium,Enable citation verification systems.,AI Product Manager,Low,COSO Principle 15
+Overreliance by Users,High,High,Display disclaimers; require human review.,Business Unit Manager,Medium,COSO Principle 10
+Prompt Misuse or Abuse,Medium,High,Monitor usage; restrict sensitive prompts.,AI Governance Lead,Medium,NIST AI RMF
+Cross-Agent Contamination,Medium,High,Isolate agent memory and sessions.,Security Engineer,Medium,NIST SP 800-53 SC-4
+Insecure APIs,High,High,Use HTTPS and API authentication.,DevOps,Medium,ISO 27001 A.13.1.1
+Insufficient Logging/Auditing,Medium,Medium,Enable comprehensive logs with access controls.,IT Admin,Low,NIST SP 800-53 AU-2
+Denial of Service (DoS),Medium,High,Rate-limit queries and sandbox agent tasks.,Security Engineer,Medium,NIST SP 800-53 SC-5
+Non-consensual Use,Medium,High,Implement consent workflows and disclosures.,Legal Counsel,Low,GDPR Art. 6
+Inadequate Redaction,High,Medium,Use automated redaction for PII in logs and outputs.,Compliance Officer,Medium,ISO 27701 A.8.5
+Lack of Data Minimization,Medium,Medium,Only collect/process data required for task.,Data Privacy Officer,Low,GDPR Art. 5(1)(c)
+Output Toxicity or Inappropriateness,Medium,High,Implement toxicity filters and prompt guards.,AI Ethics Officer,Medium,NIST AI RMF
+Fail-Silent Behavior,Medium,Medium,Set up failure alerts and fallbacks.,ML Ops Lead,Low,COSO Principle 16
+Error Propagation,High,High,Validate agent output before downstream use.,ML Engineer,Medium,ISO 27001 A.14.1.1
+Data Bias,High,High,Audit and balance training datasets.,AI Ethics Officer,Medium,NIST AI RMF
+Unfair Outcomes,Medium,High,Perform outcome testing across groups.,AI Governance Lead,Medium,COSO Principle 8
+Cultural Insensitivity,Medium,Medium,Include diverse linguistic/cultural data.,AI Governance Lead,Low,ISO 26000
+Poor Prompt Management,Medium,Medium,"Centralize, version, and test prompt libraries.",AI Product Manager,Low,NIST AI RMF
+Inadequate Monitoring,Medium,High,Implement dashboards and anomaly detection.,ML Ops Lead,Medium,ISO 27001 A.12.4.1
+Unclear Ownership,Medium,High,Define and document roles/responsibilities.,Risk Management Lead,Low,COSO Principle 3
+Lack of Backtesting,Medium,High,Test agent behavior on historic data.,AI Governance Lead,Low,ISO 27001 A.14.2.8
+Dependency Risk,Medium,Medium,Evaluate and document vendor dependencies.,Procurement Lead,Low,ISO 27001 A.15.1.1
+Model Use Restriction Violations,Medium,High,Check licenses of models/datasets.,Legal Counsel,Low,ISO 27001 A.18.1.2
+Unclear Ownership of Output,Medium,High,Define IP clauses in AI usage policies.,Legal Counsel,Low,COSO Principle 14
+Poor UI/UX,Medium,Medium,Improve interface clarity and feedback.,UX Designer,Low,ISO 9241
+Lack of Transparency,Medium,High,Label AI systems clearly to users.,AI Product Manager,Low,NIST AI RMF
+Undisclosed Agent Limitations,Medium,Medium,Publish agent limitations in documentation.,AI Governance Lead,Low,ISO 26000
+Lack of Human-in-the-Loop,High,High,Require approval for sensitive agent actions.,Business Unit Manager,Medium,COSO Principle 10
+Vendor Lock-In,Medium,Medium,Evaluate portability of AI providers.,Procurement Lead,Medium,ISO 27001 A.15.2.1
+Supply Chain Vulnerabilities,High,High,Conduct third-party risk assessments.,Risk Management Lead,Medium,NIST SP 800-161
+Interoperability Failures,Medium,Medium,Ensure standard APIs and data formats.,Integration Lead,Low,ISO 27001 A.13.2.1
